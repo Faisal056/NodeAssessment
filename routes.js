@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const userController = require('./User/controller');
+const { verifyToken } = require("./utils");
+router.post('/register', userController.registerUser);
+router.post('/login', userController.login);
+router.post('/update',verifyToken, userController.updateUser);
+router.delete('/deleteUser/:id', userController.deleteUser);
+router.get('/all-users', userController.getUsers);
+router.get('/downloads', userController.download);
+router.get('/fetch', userController.fetchData);
+module.exports = router;
